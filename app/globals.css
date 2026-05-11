@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode — cool grays, indigo accent (HSL channels for Tailwind alpha) */
+    --background: 0 0% 98%;        /* #FAFAFA */
+    --surface: 0 0% 100%;          /* #FFFFFF */
+    --subtle: 240 5% 96%;          /* #F4F4F5 */
+    --elevated: 0 0% 100%;
+    --border: 240 6% 90%;          /* #E4E4E7 */
+    --text: 0 0% 4%;               /* #0A0A0A */
+    --text-muted: 240 4% 46%;      /* #71717A */
+
+    --accent-50: 226 100% 97%;     /* #EEF2FF */
+    --accent-100: 226 100% 94%;    /* #E0E7FF */
+    --accent-200: 230 94% 89%;     /* #C7D2FE */
+    --accent-300: 234 89% 82%;     /* #A5B4FC */
+    --accent-500: 239 84% 67%;     /* #6366F1 */
+    --accent-600: 243 75% 59%;     /* #4F46E5 */
+    --accent-700: 245 58% 51%;     /* #4338CA */
+    --accent-800: 244 56% 43%;     /* #3730A3 */
+    --accent-900: 245 52% 21%;     /* #1E1B4B (used in dark) */
+    --accent-950: 244 51% 16%;     /* #14133A (used in dark) */
+
+    /* Semantic — shared across themes, no blue-adjacent */
+    --success: 142 76% 36%;        /* #16A34A */
+    --warning: 38 92% 50%;         /* #F59E0B */
+    --danger: 0 72% 51%;           /* #DC2626 */
+    --info: 173 80% 40%;           /* #14B8A6 */
+  }
+
+  .dark {
+    /* Dark mode — near-black surfaces, indigo glow */
+    --background: 0 0% 0%;         /* #000000 */
+    --surface: 0 0% 4%;            /* #0A0A0A */
+    --subtle: 240 6% 10%;          /* #18181B */
+    --elevated: 240 6% 10%;        /* #18181B */
+    --border: 240 4% 16%;          /* #27272A — softened from palette to reduce contrast */
+    --text: 0 0% 98%;              /* #FAFAFA */
+    --text-muted: 240 5% 65%;      /* #A1A1AA */
+
+    /* Indigo scale keeps 500 as brand; deeper shades used for tints */
+    --accent-50: 244 51% 16%;
+    --accent-100: 245 52% 21%;
+    --accent-200: 230 94% 89%;
+    --accent-300: 234 89% 82%;
+    --accent-500: 239 84% 67%;
+    --accent-600: 243 75% 59%;
+    --accent-700: 245 58% 51%;
+    --accent-800: 244 56% 43%;
+    --accent-900: 245 52% 21%;
+    --accent-950: 244 51% 16%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--text));
+    font-feature-settings: "cv11", "ss01", "ss03";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Scrollbar refinement so it doesn't fight the dark theme */
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--text-muted));
+  }
+}
